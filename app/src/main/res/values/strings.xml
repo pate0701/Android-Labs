@@ -2,4 +2,10 @@
     <string name="app_name">Lab1</string>
     <string name="hello_message">Hello English World,Jay !</string>
     <string name="button_text">I am English Button</string>
+    <string name="button_text1">Button Here.</string>
+    <string name="check_box">Check this Box..</string>
+    <string name="textView">Look At My GUI</string>
+    <string name="switch_text">Switch on/off</string>
+    <string name="toast_message">Here is more information .</string>
+    <string name="hint">Type Here</string>
 </resources>

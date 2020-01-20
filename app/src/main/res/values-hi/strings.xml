@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab1</string>
+    <string name="app_name">लैब एक ।</string>
     <string name="hello_message">Hello Hindi World,Jay !</string>
-    <string name="button_text">I am Hindi Button</string>
+    <string name="button_text">I am a Hindi Button</string>
+    <string name="button_text1">यह बटन है।</string>
+    <string name="check_box">इस बॉक्स को चेक करें।</string>
+    <string name="textView">GUI देखो।</string>
+    <string name="switch_text">Switch  चालू/बंद</string>
+    <string name="toast_message">Here is more information(Hindi).</string>
+    <string name="hint">Type Here</string>
 </resources>
