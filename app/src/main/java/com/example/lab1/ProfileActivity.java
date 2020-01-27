@@ -20,7 +20,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.e(ACTIVITY_NAME,"onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
         mImageButton.setOnClickListener(e->{
                 dispatchTakePictureIntent();
         });
-
+        Log.e(ACTIVITY_NAME,"onCreate");
 
     }
 
