@@ -9,4 +9,16 @@
     <string name="switch_text">Switch  चालू/बंद</string>
     <string name="toast_message">Here is more information(Hindi).</string>
     <string name="hint">Type Here</string>
+    <string name="email_hint">Type email here(h)</string>
+    <string name="email_message">Enter Your (h)Email Address :</string>
+    <string name="password_message">Type Your (h)Password :</string>
+    <string name="login_button">Login(h)</string>
+
+    <string name="textProfile">Your Profile(h)</string>
+    <string name="textName">Your Name :(h)</string>
+    <string name="editName">Enter Your Name(h)</string>
+    <string name="textEmail">Your Email :(h)</string>
+    <string name="editEmail">Enter Your Email (h)</string>
+    <string name="textPicture">Your Picture :(h)</string>
+    <string name="textButton">Click the button above to take a picture.(h)</string>
 </resources>

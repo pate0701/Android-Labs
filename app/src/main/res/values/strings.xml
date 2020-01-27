@@ -8,4 +8,17 @@
     <string name="switch_text">Switch on/off</string>
     <string name="toast_message">Here is more information .</string>
     <string name="hint">Type Here</string>
+    <string name="email_hint">Type email here</string>
+    <string name="email_message">Enter Your Email Address :</string>
+    <string name="password_message">Type Your Password :</string>
+    <string name="login_button">Login</string>
+
+    <string name="textProfile">Your Profile</string>
+    <string name="textName">Your Name :</string>
+    <string name="editName">Enter Your Name</string>
+    <string name="textEmail">Your Email :</string>
+    <string name="editEmail">Enter Your Email </string>
+    <string name="textPicture">Your Picture :</string>
+    <string name="textButton">Click the button above to take a picture.</string>
+
 </resources>

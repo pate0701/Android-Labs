@@ -1,31 +1,84 @@
 package com.example.lab1;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
-
 public class MainActivity extends AppCompatActivity {
-
-
-    protected Button myButton;
+    //protected Button myButton;
+    private EditText email;
+    private EditText password;
+    private Button login;
+    public static final String ACTIVITY_NAME = "MainActivity";
+    private SharedPreferences sharedPreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_login);
 
-        //setContentView(R.layout.activity_main_linear);
-        //setContentView(R.layout.activity_main_relative);
-         setContentView(R.layout.activity_main_grid);
+        email=(EditText)findViewById(R.id.editTextEmail);
+        password=(EditText)findViewById(R.id.editTextPassword);
+        login=(Button)findViewById(R.id.buttonLogin);
+        sharedPreferences = getSharedPreferences("SharedPreferenceFile", Context.MODE_PRIVATE);
+        String savedString = sharedPreferences.getString("emailAddress", "").toString();
+        email.setText(savedString);
+
+
+
+        login.setOnClickListener(e->
+        {
+            Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+            intent.putExtra("emailFromLastActivity",savedString);
+            startActivity(intent);
+        });
+
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(ACTIVITY_NAME,"onPause");
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("emailAddress", email.getText().toString());
+        Log.e(ACTIVITY_NAME,"onPause"+email.getText().toString());
+        editor.commit();
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* //These are Lab 2 Files.
+
+        setContentView(R.layout.activity_main_linear);
+        setContentView(R.layout.activity_main_relative);
+        setContentView(R.layout.activity_main_grid);
 
         myButton=(Button)findViewById(R.id.button1);
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -79,3 +132,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+*/
