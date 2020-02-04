@@ -21,4 +21,10 @@
     <string name="editEmail">Enter Your Email (h)</string>
     <string name="textPicture">Your Picture :(h)</string>
     <string name="textButton">Click the button above to take a picture.(h)</string>
+
+    <string name="goToChat">Go To Chat</string>
+    <string name="sendButton">Send</string>
+    <string name="receiveButton">Receive</string>
+    <string name="typeHereHint">Type Here</string>
+
 </resources>
