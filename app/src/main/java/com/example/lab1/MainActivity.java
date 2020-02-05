@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(e->
         {
             Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
-            intent.putExtra("emailFromLastActivity",savedString);
+            intent.putExtra("emailFromLastActivity",/*savedString*/email.getText().toString());
             startActivity(intent);
         });
 

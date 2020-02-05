@@ -1,6 +1,7 @@
 
 package com.example.lab1;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -11,16 +12,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ChatRoomActivity extends AppCompatActivity {
 
     ListView listView;
     EditText editText;
-    List<MessageModel> listMessage = new ArrayList<>();
+    ArrayList<MessageModel> listMessage = new ArrayList<>();
     Button sendBtn;
     Button receiveBtn;
+    ChatAdapter adt;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             MessageModel model = new MessageModel(message, true);
             listMessage.add(model);
             editText.setText("");
-            ChatAdapter adt = new ChatAdapter(listMessage, getApplicationContext());
+            adt = new ChatAdapter(listMessage, getApplicationContext());
             listView.setAdapter(adt);
         });
 
@@ -45,11 +47,28 @@ public class ChatRoomActivity extends AppCompatActivity {
             MessageModel model = new MessageModel(message, false);
             listMessage.add(model);
             editText.setText("");
-            ChatAdapter adt = new ChatAdapter(listMessage, getApplicationContext());
+            adt = new ChatAdapter(listMessage, getApplicationContext());
             listView.setAdapter(adt);
         });
 
+        listView.setOnItemLongClickListener( (p, b, pos, id) -> {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Do you want to delete this?")
+                    .setPositiveButton("Yes", (click, arg) -> {
+                        listMessage.remove(pos);
+                        ChatAdapter myAdapter = new ChatAdapter(listMessage,getApplicationContext());
+                        listView.setAdapter(myAdapter);
+                    })
+                    //What the No button does:
+                    .setNegativeButton("No", (click, arg) -> { })
+                    .setMessage("The selected row is "+pos +"\nThe database id is "+id)
+                    .setView(getLayoutInflater().inflate(R.layout.alert_dialog, null) )
 
+                    //Show the dialog
+                    .create().show();
+
+            return true;
+        });
 
         Log.d("ChatRoomActivity","onCreate");
 

@@ -4,30 +4,19 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <LinearLayout
+    <View
+        android:id="@+id/receiveAvatar"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:background="@drawable/row_receive"></View>
+
+    <TextView
+        android:id="@+id/textViewMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/receiveAvatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/row_receive"></ImageButton>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textViewMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:textColor="#050505"
-            android:textSize="20dp"></TextView>
-    </LinearLayout>
+        android:textAlignment="viewStart"
+        android:text="this is bla bla bla"
+        android:textColor="#050505"
+        android:textSize="20dp"></TextView>
 
 </LinearLayout>
