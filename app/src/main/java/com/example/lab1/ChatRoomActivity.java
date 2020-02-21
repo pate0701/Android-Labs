@@ -2,53 +2,77 @@
 package com.example.lab1;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ChatRoomActivity extends AppCompatActivity {
 
-    ListView listView;
-    EditText editText;
-    ArrayList<MessageModel> listMessage = new ArrayList<>();
-    Button sendBtn;
-    Button receiveBtn;
-    ChatAdapter adt;
+    public ListView listView;
+    public EditText editText;
+    public List<MessageModel> listMessage = new ArrayList<>();
+    public Button sendBtn;
+    public Button receiveBtn;
+
+
+        private MyOpener myOpener=new MyOpener(this);
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+
+        listMessage=myOpener.read();
 
         listView = (ListView)findViewById(R.id.listViewMsg);
         editText = (EditText)findViewById(R.id.editTextMessage);
         sendBtn = (Button)findViewById(R.id.buttonSend);
         receiveBtn = (Button)findViewById(R.id.buttonReceive);
 
+
+        ChatAdapter adt=new ChatAdapter(listMessage,getApplicationContext());
+        listView.setAdapter(adt);
+
         sendBtn.setOnClickListener(c -> {
-            String message = editText.getText().toString();
-            MessageModel model = new MessageModel(message, true);
-            listMessage.add(model);
-            editText.setText("");
-            adt = new ChatAdapter(listMessage, getApplicationContext());
-            listView.setAdapter(adt);
+
+            if(!editText.getText().toString().equals("")) {
+
+                String message = editText.getText().toString();
+                MessageModel messageModel = new MessageModel(message, "sender");
+                listMessage.add(messageModel);
+                myOpener.create(messageModel);
+                editText.setText("");
+                adt.notifyDataSetChanged();
+
+            }
         });
 
         receiveBtn.setOnClickListener(c -> {
-            String message = editText.getText().toString();
-            MessageModel model = new MessageModel(message, false);
-            listMessage.add(model);
-            editText.setText("");
-            adt = new ChatAdapter(listMessage, getApplicationContext());
-            listView.setAdapter(adt);
+
+            if(!editText.getText().toString().equals("")){
+
+                String message = editText.getText().toString();
+                MessageModel messageModel = new MessageModel(message,"receiver");
+                listMessage.add(messageModel);
+                myOpener.create(messageModel);
+                editText.setText("");
+                adt.notifyDataSetChanged();
+
+            }
         });
 
         listView.setOnItemLongClickListener( (p, b, pos, id) -> {
@@ -56,8 +80,12 @@ public class ChatRoomActivity extends AppCompatActivity {
             alertDialogBuilder.setTitle("Do you want to delete this?")
                     .setPositiveButton("Yes", (click, arg) -> {
                         listMessage.remove(pos);
+                       // MessageModel message=listMessage.get(pos);
+                        myOpener.delete(listMessage.get(pos));
                         ChatAdapter myAdapter = new ChatAdapter(listMessage,getApplicationContext());
                         listView.setAdapter(myAdapter);
+                        myAdapter.notifyDataSetChanged();
+
                     })
                     //What the No button does:
                     .setNegativeButton("No", (click, arg) -> { })
@@ -76,59 +104,17 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 }
 
+ class ChatAdapter extends BaseAdapter {
 
-
-/*
-
-This is lab 4 which was not Working,so i started creating this again from scratch.
-
-
-public class ChatRoomActivity extends AppCompatActivity {
-
-    //  Declaring SendButton,ReceiveButton,Listview,editTextMessage,ListMessage;
-    private Button sendButton;
-    private Button receiveButton;
-    private ListView listView;
-    private EditText editTextMessage;
-    private ArrayList<MessageModel> listMessage = new ArrayList<>( );
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_room);
-        sendButton= findViewById(R.id.buttonSend);
-        receiveButton= findViewById(R.id.buttonReceive);
-        listView= findViewById(R.id.listViewMsg);
-        editTextMessage= findViewById(R.id.editTextMessage);
-
-        sendButton.setOnClickListener(click ->{
-            String message=editTextMessage.getText().toString();
-            MessageModel model=new MessageModel(message,true);
-            listMessage.add(model);
-            editTextMessage.setText(null);
-            ChatAdapter adp=new ChatAdapter(listMessage,getApplicationContext());
-            listView.setAdapter(adp);
-        });
-
-        receiveButton.setOnClickListener(e->{
-            String message=editTextMessage.getText().toString();
-            MessageModel model=new MessageModel(message,false);
-            listMessage.add(model);
-            editTextMessage.setText(null);
-            ChatAdapter adp=new ChatAdapter(listMessage,getApplicationContext());
-            listView.setAdapter(adp);
-        });
-    }
-}
-class ChatAdapter extends BaseAdapter {
     private List<MessageModel> messageModels;
     private Context context;
-    private LayoutInflater inflater;
+    LayoutInflater inflater;
 
-    public ChatAdapter(ArrayList<MessageModel> messageModels, Context context) {
+
+    public ChatAdapter(List<MessageModel> messageModels, Context context) {
         this.messageModels = messageModels;
-        this.context=context;
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.context = context;
+        this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -143,25 +129,28 @@ class ChatAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return (long) position;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
+        View row;
 
-        if (view == null) {
-            if (messageModels.get(position).isSend()) {
-                view = inflater.inflate(R.layout.row_send, null);
-            } else {
-                view = inflater.inflate(R.layout.row_receive, null);
-            }
-            TextView messageText = (TextView)view.findViewById(R.id.textViewMessage);
-            messageText.setText(messageModels.get(position).message);
+        if(messageModels.get(position).getType().equalsIgnoreCase("sender")){
+            row = inflater.inflate(R.layout.row_send, parent, false);
+            TextView message;
+            message = (TextView) row.findViewById(R.id.textViewMessageSend);
+            message.setText(messageModels.get(position).getMessage());
         }
-        return view;
+
+        else{
+            row = inflater.inflate(R.layout.row_receive, parent, false);
+            TextView message;
+            message = (TextView) row.findViewById(R.id.textViewMessageReceive);
+            message.setText(messageModels.get(position).getMessage());
+        }
+
+        return (row);
+
     }
-
 }
-
- */

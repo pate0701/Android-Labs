@@ -16,15 +16,15 @@
 
     <string name="textProfile">Your Profile(h)</string>
     <string name="textName">Your Name :(h)</string>
-    <string name="editName">Enter Your Name(h)</string>
-    <string name="textEmail">Your Email :(h)</string>
-    <string name="editEmail">Enter Your Email (h)</string>
-    <string name="textPicture">Your Picture :(h)</string>
-    <string name="textButton">Click the button above to take a picture.(h)</string>
+    <string name="editName">अपना नाम दर्ज करें</string>
+    <string name="textEmail">तुम्हारा ईमेल :</string>
+    <string name="editEmail">अपना ईमेल दर्ज करें</string>
+    <string name="textPicture">आपकी तस्वीर :</string>
+    <string name="textButton">तस्वीर लेने के लिए ऊपर दिए गए बटन पर क्लिक करें</string>
 
-    <string name="goToChat">Go To Chat</string>
-    <string name="sendButton">Send</string>
-    <string name="receiveButton">Receive</string>
-    <string name="typeHereHint">Type Here</string>
+    <string name="goToChat">चैट करने के लिए</string>
+    <string name="sendButton">भेजने</string>
+    <string name="receiveButton">प्राप्त</string>
+    <string name="typeHereHint">यहा लिखो</string>
 
 </resources>

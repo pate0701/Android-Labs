@@ -1,15 +1,26 @@
 package com.example.lab1;
-
 public class MessageModel {
-    public String message;
-    public boolean isSend;
 
-    public MessageModel(String message, boolean isSend) {
+    private long id;
+    private String message;
+    private String type;
+
+    public MessageModel(String message, String type) {
         this.message = message;
-        this.isSend = isSend;
+        this.type = type;
     }
 
-    public MessageModel() {
+    public MessageModel(long id, String message, String type) {
+        this(message,type);
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getMessage() {
@@ -20,11 +31,12 @@ public class MessageModel {
         this.message = message;
     }
 
-    public boolean isSend() {
-        return isSend;
+    public String getType() {
+        return type;
     }
 
-    public void setSend(boolean send) {
-        isSend = send;
+    public void setType(String type) {
+        this.type = type;
     }
 }
+
