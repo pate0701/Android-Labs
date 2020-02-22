@@ -77,12 +77,15 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
 
         listView.setOnItemLongClickListener( (p, b, pos, id) -> {
+
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Do you want to delete this?")
                     .setPositiveButton("Yes", (click, arg) -> {
+
                         listMessage.remove(pos);
-                       // MessageModel message=listMessage.get(pos);
-                        myOpener.delete(listMessage.get(pos));
+
+
+                        myOpener.delete(id);
                         ChatAdapter myAdapter = new ChatAdapter(listMessage,getApplicationContext());
                         listView.setAdapter(myAdapter);
                         myAdapter.notifyDataSetChanged();
@@ -112,6 +115,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.e(ACTIVITY_NAME, "in onresume");
+
     }
 
     @Override

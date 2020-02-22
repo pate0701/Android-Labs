@@ -5,6 +5,10 @@ public class MessageModel {
     private String message;
     private String type;
 
+
+    public MessageModel() {
+    }
+
     public MessageModel(String message, String type) {
         this.message = message;
         this.type = type;

@@ -122,10 +122,10 @@ public class MyOpener extends SQLiteOpenHelper {
 
     }
 
-    public void delete(MessageModel message){
+    public void delete(long id){
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql="DELETE FROM "+TABLE_NAME+ " WHERE id="+message.getId();
-        db.execSQL(sql,null);
+        String sql="DELETE FROM "+TABLE_NAME+ " WHERE id="+id;
+        db.execSQL(sql);
         db.close();
         //String whereClause ="id=?";
         //String[] whereArgs = new String[]{String.valueOf(message.getId())};
