@@ -22,6 +22,7 @@ import java.util.List;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
+    public static final String ACTIVITY_NAME="ChatRoomActivity";
     public ListView listView;
     public EditText editText;
     public List<MessageModel> listMessage = new ArrayList<>();
@@ -101,6 +102,35 @@ public class ChatRoomActivity extends AppCompatActivity {
         Log.d("ChatRoomActivity","onCreate");
 
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(ACTIVITY_NAME, "in onstart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(ACTIVITY_NAME, "in onresume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(ACTIVITY_NAME, "in onpause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(ACTIVITY_NAME, "in onstop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(ACTIVITY_NAME, "in ondestroy");
+    }
 
 }
 
@@ -153,4 +183,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         return (row);
 
     }
+
+
 }
