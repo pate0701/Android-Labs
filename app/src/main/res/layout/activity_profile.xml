@@ -70,6 +70,22 @@
             android:hint="@string/editEmail">
 
         </EditText>
+
+        <Button
+            android:id="@+id/buttonGoToforcast"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/goToForecast">
+
+        </Button>
+
+        <Button
+            android:id="@+id/buttonGoToChat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/goToChat">
+
+        </Button>
     </LinearLayout>
 
     <LinearLayout
@@ -117,13 +133,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/buttonGoToChat"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/goToChat">
-
-        </Button>
     </LinearLayout>
 
 </LinearLayout>

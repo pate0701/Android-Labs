@@ -26,4 +26,10 @@
     <string name="receiveButton">Receive</string>
     <string name="typeHereHint">Type Here</string>
 
+    <string name="txtCurrentText">Current Temp</string>
+    <string name="txtMinText">Min Temp </string>
+    <string name="txtMaxText">Max Temp </string>
+    <string name="txtUVText">UV Rating</string>
+    <string name="goToForecast">Weather Forecast</string>
+
 </resources>

@@ -27,4 +27,10 @@
     <string name="receiveButton">प्राप्त</string>
     <string name="typeHereHint">यहा लिखो</string>
 
+    <string name="txtCurrentText">Current Temp(H)</string>
+    <string name="txtMinText">Min Temp(H)</string>
+    <string name="txtMaxText">Max Temp(H)</string>
+    <string name="txtUVText">UV Rating(H)</string>
+    <string name="goToForecast">Weather Forecast(H)</string>
+
 </resources>
