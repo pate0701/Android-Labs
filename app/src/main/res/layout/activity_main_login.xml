@@ -26,8 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_hint"
-            android:inputType="textEmailAddress">
-
+            android:inputType="textEmailAddress"
+            android:nextFocusDown="@id/editTextPassword"
+            >
         </EditText>
     </LinearLayout>
 
@@ -53,7 +54,9 @@
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword">
+            android:inputType="textPassword"
+            android:nextFocusDown="@id/buttonLogin"
+            android:nextFocusUp="@id/editTextEmail">
 
         </EditText>
 
@@ -68,8 +71,9 @@
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_button">
+            android:text="@string/login_button"
+            android:nextFocusUp="@id/editTextPassword"/>
 
-        </Button>
+
     </LinearLayout>
 </LinearLayout>
