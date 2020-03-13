@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameNew"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChatRoomActivity">
+
+
+    <ListView
+        android:id="@+id/chatListView"
+        android:layout_width="350dp"
+        android:layout_height="1230dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:divider="@null"
+        android:transcriptMode="alwaysScroll"/>
+
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/chatListView">
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        tools:context=".ChatRoomActivity">
+
+        <Button
+            android:id="@+id/BtnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:onClick="sendChatMessage"
+            android:text="@string/sendButton" />
+
+        <EditText
+            android:id="@+id/chatText"
+            android:layout_width="173dp"
+            android:layout_height="fill_parent"
+            android:layout_alignRight="@id/BtnSend"
+            android:layout_alignParentBottom="true"
+            android:ems="10"
+            android:hint="@string/typeHereHint"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/BtnReceive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/chatText"
+            android:layout_weight="1"
+            android:onClick="receiveChatMessage"
+            android:text="@string/receiveButton" />
+    </LinearLayout>
+
+
+</RelativeLayout>

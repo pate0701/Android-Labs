@@ -33,4 +33,10 @@
     <string name="txtUVText">UV Rating(H)</string>
     <string name="goToForecast">Weather Forecast(H)</string>
 
+    <string name="textViewMsgHere">Message Here(H)</string>
+    <string name="textViewId">ID= (H)</string>
+    <string name="textViewCheckbox">Is a Send Message(H)</string>
+    <string name="buttonHide">Hide(H)</string>
+
+
 </resources>

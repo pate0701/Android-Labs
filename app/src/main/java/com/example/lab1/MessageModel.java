@@ -1,30 +1,35 @@
 package com.example.lab1;
+
 public class MessageModel {
-
-    private long id;
+    private boolean right, left;
     private String message;
-    private String type;
-
+    private long id;
 
     public MessageModel() {
+        this(false, false, "", -1);
     }
 
-    public MessageModel(String message, String type) {
+    public MessageModel(boolean right, boolean left, String message, long id) {
+        this.right = right;
+        this.left = left;
         this.message = message;
-        this.type = type;
-    }
-
-    public MessageModel(long id, String message, String type) {
-        this(message,type);
         this.id = id;
     }
 
-    public long getId() {
-        return id;
+    public boolean isRight() {
+        return right;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
     }
 
     public String getMessage() {
@@ -35,12 +40,12 @@ public class MessageModel {
         this.message = message;
     }
 
-    public String getType() {
-        return type;
+    public long getId() {
+        return id;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setId(long id) {
+        this.id = id;
     }
 }
 

@@ -12,123 +12,51 @@ import java.util.List;
 
 public class MyOpener extends SQLiteOpenHelper {
 
-    public static final String ACTIVITY_NAME="MyOpener";
-    private static final int DATABASE_VERSION=1;
-    protected static final String DATABASE_NAME="ChatData";
-    protected static final String TABLE_NAME="Message";
-    protected static final String COL_ID="id";
-    protected static final String COL_MESSAGE="message";
-    protected static final String COL_TYPE="type";
+    public static final String DATABASE_NAME = "Message.db";
+    public static final String TABLE_NAME = "Message_table";
+    public static final int DATABASE_VERSION = 1;
+    public static final String COL_1 = "ID";
+    public static final String COL_2 = "MESSAGE";
+    public static final String COL_3 = "ISSENT";
+    public static final String COL_4 = "ISRECEIVED";
 
-    public MyOpener( Context context) {
+    public MyOpener(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql= "CREATE TABLE "+TABLE_NAME+" ("+COL_ID+" LONG PRIMARY KEY ,"+COL_MESSAGE+" TEXT,"+COL_TYPE+" TEXT)";
-        db.execSQL(sql);
+        db.execSQL("create table " + TABLE_NAME +" (ID LONG PRIMARY KEY,MESSAGE TEXT,ISSENT INTEGER,ISRECEIVED INTEGER)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql="DROP TABLE IF EXISTS Message";
-        db.execSQL(sql);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
         onCreate(db);
     }
 
-    public int count() {
-
+    public boolean insertData(Long id, String message,Integer issent,Integer isreceived) {
         SQLiteDatabase db = this.getWritableDatabase();
-
-        String sql = "SELECT * FROM Message";
-        int recordCount = db.rawQuery(sql, null).getCount();
-        db.close();
-
-        return recordCount;
-
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1,id);
+        contentValues.put(COL_2,message);
+        contentValues.put(COL_3,issent);
+        contentValues.put(COL_4,isreceived);
+        long result = db.insert(TABLE_NAME,null ,contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
     }
 
-    public void create(MessageModel message) {
-
-
-
-        ContentValues values = new ContentValues();
-        values.put("id",(long)count());
-        values.put("message", message.getMessage());
-        values.put("type", message.getType());
-
+    public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.getPageSize();
-        boolean createSuccessful = db.insert("Message", null, values) > 0;
-        db.close();
-
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME,null);
+        return res;
     }
 
-    public List<MessageModel> read() {
-
-        List<MessageModel> recordsList = new ArrayList<MessageModel>();
-
-        String sql = "SELECT * FROM Message ORDER BY id ASC";
-
+    public long deleteData (String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(sql, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-
-                long id = Long.parseLong(cursor.getString(cursor.getColumnIndex("id")));
-                String messageEntry = cursor.getString(cursor.getColumnIndex("message"));
-                String type = cursor.getString(cursor.getColumnIndex("type"));
-
-                MessageModel message = new MessageModel(id, messageEntry, type);
-
-
-                recordsList.add(message);
-
-            } while (cursor.moveToNext());
-        }
-        printCursor(cursor);
-        cursor.close();
-        db.close();
-
-        return recordsList;
-    }
-
-    public void printCursor(Cursor c){
-
-        Log.i(ACTIVITY_NAME,  "Database Version: "+DATABASE_VERSION);
-
-        Log.i(ACTIVITY_NAME,  "column count: "+c.getColumnCount());
-
-        for(int i = 0; i < c.getColumnCount() ; i++){
-            Log.i(ACTIVITY_NAME,  "column "+i+": " +c.getColumnName(i));
-        }
-
-
-
-        if (c.moveToFirst()) {
-            while (!c.isAfterLast()) {
-                Log.i(ACTIVITY_NAME,"Id: " + c.getString(c.getColumnIndex("id")));
-                Log.i(ACTIVITY_NAME,"Message: " + c.getString(c.getColumnIndex("message")));
-                Log.i(ACTIVITY_NAME,"Type: " + c.getString(c.getColumnIndex("type")));
-                c.moveToNext();
-            }
-        }
-
-
-        Log.i(ACTIVITY_NAME,  String.valueOf(c.getColumnCount()));
-
-
-    }
-
-    public void delete(long id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql="DELETE FROM "+TABLE_NAME+ " WHERE id="+id;
-        db.execSQL(sql);
-        db.close();
-        //String whereClause ="id=?";
-        //String[] whereArgs = new String[]{String.valueOf(message.getId())};
-        //db.delete(TABLE_NAME,whereClause,whereArgs);
+        return db.delete(TABLE_NAME, "ID = ?",new String[] {id});
     }
 }

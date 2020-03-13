@@ -11,7 +11,7 @@
         android:background="@drawable/row_receive"></View>
 
     <TextView
-        android:id="@+id/textViewMessageReceive"
+        android:id="@+id/msgReceived"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="viewStart"
