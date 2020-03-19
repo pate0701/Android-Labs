@@ -54,38 +54,22 @@ public class DetailsFragment extends Fragment {
             //sentReceived.setText(dataFromActivity.getString(ChatRoomActivity.SENT));
             sentReceived.setSelected(true);
 
-        /*
-        if(dataFromActivity.getString(ChatRoomActivity.RECEIVED)!="" || dataFromActivity.getString(ChatRoomActivity.RECEIVED) != null){
-        sentReceived.setText(dataFromActivity.getString(ChatRoomActivity.RECEIVED));}
-
-        if(dataFromActivity.getString(ChatRoomActivity.SENT)!="" || dataFromActivity.getString(ChatRoomActivity.SENT) != null){
-            sentReceived.setText(dataFromActivity.getString(ChatRoomActivity.SENT));}
-            */
-
-        // get the delete button, and add a click listener:
+        // get the Hide button, and add a click listener:
         Button hideButton = (Button)result.findViewById(R.id.hideButton);
         hideButton.setOnClickListener( clk -> {
 
             if(isTablet) { //both the list and details are on the screen:
                 ChatRoomActivity parent = (ChatRoomActivity)getActivity();
-               // parent.deleteMessageId((int)id); //this deletes the item and updates the list
-
-
-                //now remove the fragment since you deleted it from the database:
-                // this is the object to be removed, so remove(this):
                 parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
-                //parent.finish();
+                parent.finish();
             }
-            //for Phone:
-            else //You are only looking at the details, you need to go back to the previous list page
+
+            else
             {
                 EmptyActivity parent = (EmptyActivity) getActivity();
                 Intent backToFragmentExample = new Intent();
-                backToFragmentExample.putExtra(ChatRoomActivity.MSGDB_ID, dataFromActivity.getLong(ChatRoomActivity.MSGDB_ID ));
-
-                parent.setResult(Activity.RESULT_OK, backToFragmentExample); //send data back to FragmentExample in onActivityResult()
-                //parent.finish(); //go back
                 parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
+                parent.finish();
             }
         });
         return result;

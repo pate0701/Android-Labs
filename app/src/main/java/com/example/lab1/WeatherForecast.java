@@ -74,8 +74,6 @@ public class WeatherForecast extends AppCompatActivity {
                 Bitmap bp = BitmapFactory.decodeFile("/data/data/com.example.lab1/files/"+icon+".png");
                 iv.setImageBitmap(bp);
 
-
-
             }
         }
 
@@ -90,7 +88,6 @@ public class WeatherForecast extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             String ret = null;
-
 
             String queryURL = "http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=7e943c97096a9784391a981c4d878b22&mode=xml&units=metric";
 
