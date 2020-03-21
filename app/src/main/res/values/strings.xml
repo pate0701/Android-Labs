@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab1</string>
+    <string name="app_name">Lab8</string>
     <string name="hello_message">Hello English World,Jay !</string>
     <string name="button_text">I am English Button</string>
     <string name="button_text1">Button Here.</string>
@@ -37,5 +37,9 @@
     <string name="textViewId">ID= </string>
     <string name="textViewCheckbox">Is a Send Message</string>
     <string name="buttonHide">Hide</string>
+
+    <string name="testToolbar">Go To Test Toolbar</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 </resources>

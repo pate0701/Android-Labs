@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">लैब एक ।</string>
+    <string name="app_name">लैब 8 ।</string>
     <string name="hello_message">Hello Hindi World,Jay !</string>
     <string name="button_text">I am a Hindi Button</string>
     <string name="button_text1">यह बटन है।</string>
@@ -37,6 +37,10 @@
     <string name="textViewId">ID= (H)</string>
     <string name="textViewCheckbox">Is a Send Message(H)</string>
     <string name="buttonHide">Hide(H)</string>
+
+    <string name="testToolbar">Go To Test Toolbar</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 
 </resources>
